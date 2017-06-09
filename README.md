@@ -3,7 +3,7 @@ A web application that serves up a little REST API to query and convey the statu
 
 [![](https://jitpack.io/v/itzg/mc-status.svg)](https://jitpack.io/#itzg/mc-status)
 
-[Download pre-built jar](http://bit.ly/mc-status-jar)
+[Download pre-built jar](https://jitpack.io/com/github/itzg/mc-status/1.0.1/mc-status-1.0.1.jar)
 
 ## Usage
 
