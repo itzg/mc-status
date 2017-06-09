@@ -3,6 +3,8 @@ A web application that serves up a little REST API to query and convey the statu
 
 [![](https://jitpack.io/v/itzg/mc-status.svg)](https://jitpack.io/#itzg/mc-status)
 
+[Download pre-built jar](http://bit.ly/mc-status-jar)
+
 ## Usage
 
 To use only the ad hoc query endpoint, `/server`, just start using:
