@@ -5,7 +5,7 @@
 
 	<groupId>me.itzg</groupId>
 	<artifactId>mc-status</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>mc-status</name>
@@ -23,6 +23,18 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
+
+    <scm>
+        <connection>scm:git:https://github.com/itzg/mc-status</connection>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>itzg</id>
+            <name>Geoff Bourne</name>
+            <email>itzgeoff@gmail.com</email>
+        </developer>
+    </developers>
 
 	<dependencies>
 		<dependency>

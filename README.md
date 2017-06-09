@@ -1,5 +1,8 @@
 
 A web application that serves up a little REST API to query and convey the status of Minecraft servers using the native MC protocol
+
+[![](https://jitpack.io/v/itzg/mc-status.svg)](https://jitpack.io/#itzg/mc-status)
+
 ## Usage
 
 To use only the ad hoc query endpoint, `/server`, just start using:
