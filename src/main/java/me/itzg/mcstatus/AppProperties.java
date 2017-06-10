@@ -17,4 +17,7 @@ public class AppProperties {
     int defaultPort = 25565;
     List<String> servers = Collections.emptyList();
     int serverInfoTimeoutSec = 10;
+
+    boolean excludeIcon = false;
+    boolean excludePlayers = false;
 }

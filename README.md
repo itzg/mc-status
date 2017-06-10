@@ -5,7 +5,7 @@ A web application that serves up a little REST API to query and convey the statu
 
 [Download pre-built jar](https://jitpack.io/com/github/itzg/mc-status/1.0.1/mc-status-1.0.1.jar)
 
-## Usage
+## Usage as a REST Server
 
 To use only the ad hoc query endpoint, `/server`, just start using:
 
@@ -24,6 +24,28 @@ The following configuration parameters can be passed after the jar:
 * **--mcstatus.serverInfoTimeoutSec**=10
 
   The number of seconds allowed for a server info response to be received
+
+## Usage as a one-shot status checker
+
+You can also run mc-status in a one-shot, terse, script-friendly way by invoking it as:
+
+    java -jar mc-status --enable-web=false SERVER[:PORT] ...
+
+If any `SERVER[:PORT]` status checks times out, then the process exits with a non-zero status code.
+
+Some other options that are useful to include are:
+
+* **--results**=FILE
+
+  The name of a file where each line is a JSON response structure for the corresponding server.
+  
+* **--mcstatus.exclude-icon**=false
+
+  Can be used to exclude the Base64 icon inclusion.
+  
+* **--mcstatus.exclude-players**=false
+
+  Can be used to exclude the list of player names. The online and max values are still included.
 
 ## Response Structure
 
