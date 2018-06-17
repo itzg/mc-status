@@ -1,7 +1,7 @@
 logging:
   level:
     org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer: info
-    org.springframework: warn
+#    org.springframework: warn
     org.apache.catalina: warn
 spring:
   main:

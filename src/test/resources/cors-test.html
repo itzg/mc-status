@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MC Status Test</title>
+</head>
+<body>
+
+<div>Version: <span id="version"></span></div>
+<div style="color: #f90000; font-weight: bold;" id="error"></div>
+
+<script language="JavaScript">
+
+    fetch("http://localhost:8080/servers")
+        .then(function (result) {
+            if (result.ok) {
+                return result.json();
+            }
+            else {
+                console.warn("Not ok: ", result);
+            }
+        })
+        .then(function (content) {
+            document.getElementById("version").innerText = content[0].version;
+        })
+        .catch(function(error) {
+            document.getElementById("error").innerText = error.message;
+        })
+        ;
+
+</script>
+
+</body>
+</html>

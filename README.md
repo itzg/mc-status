@@ -3,7 +3,7 @@ A web application that serves up a little REST API to query and convey the statu
 
 [![](https://jitpack.io/v/itzg/mc-status.svg)](https://jitpack.io/#itzg/mc-status)
 
-[Download pre-built jar](https://jitpack.io/com/github/itzg/mc-status/1.1.0/mc-status-1.1.0.jar)
+[Download pre-built jar](https://jitpack.io/com/github/itzg/mc-status/1.2.0/mc-status-1.2.0.jar)
 
 ## Usage as a REST Server
 
@@ -24,6 +24,14 @@ The following configuration parameters can be passed after the jar:
 * **--mcstatus.serverInfoTimeoutSec**=10
 
   The number of seconds allowed for a server info response to be received
+
+* **--cors.allowOrigins**
+
+  A comma separated list of specific origins (as URLs) to allow. Implies a setting of `cors.allowAll=false`
+
+* **--cors.allowAll**=true
+
+  Set to false to disable allowing of all cross-origin requests.
 
 ## Usage as a one-shot status checker
 
