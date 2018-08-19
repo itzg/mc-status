@@ -1,7 +1,6 @@
 package me.itzg.mcstatus.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 /**
@@ -17,4 +16,5 @@ public class ServerStatus {
     PlayersInfo players = new PlayersInfo();
     String description;
     byte[] icon;
+    Motd motd;
 }

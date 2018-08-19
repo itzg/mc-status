@@ -12,13 +12,12 @@ import com.google.common.net.HostAndPort;
 import lombok.extern.slf4j.Slf4j;
 import me.itzg.mcstatus.AppProperties;
 import me.itzg.mcstatus.ServerTimeoutException;
-import me.itzg.mcstatus.WebController;
+import me.itzg.mcstatus.model.Motd;
 import me.itzg.mcstatus.model.Player;
 import me.itzg.mcstatus.model.ServerStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.imageio.ImageIO;
 import java.io.ByteArrayOutputStream;
@@ -36,10 +35,12 @@ import java.util.stream.Stream;
 @Slf4j
 public class ServerStatusService {
     public final AppProperties properties;
+    private final FormattedMessageConverter formattedMessageConverter;
 
     @Autowired
-    public ServerStatusService(AppProperties properties) {
+    public ServerStatusService(AppProperties properties, FormattedMessageConverter formattedMessageConverter) {
         this.properties = properties;
+        this.formattedMessageConverter = formattedMessageConverter;
     }
 
     @GetMapping("/servers")
@@ -79,7 +80,13 @@ public class ServerStatusService {
 
                 status.setVersion(info.getVersionInfo().getVersionName());
                 status.setProtocolVersion(info.getVersionInfo().getProtocolVersion());
-                status.setDescription(info.getDescription().getText());
+
+                final String rawMotd = info.getDescription().getText();
+                status.setDescription(rawMotd); // for backward compatibility
+                status.setMotd(new Motd());
+                status.getMotd().setRaw(rawMotd);
+                status.getMotd().setHtml(formattedMessageConverter.convertToHtml(rawMotd));
+                status.getMotd().setStripped(formattedMessageConverter.stripCodes(rawMotd));
 
                 status.getPlayers().setOnline(info.getPlayerInfo().getOnlinePlayers());
                 status.getPlayers().setMax(info.getPlayerInfo().getMaxPlayers());
