@@ -5,7 +5,7 @@
 
 	<groupId>me.itzg</groupId>
 	<artifactId>mc-status</artifactId>
-	<version>1.2.0</version>
+	<version>1.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>mc-status</name>
@@ -26,6 +26,8 @@
 
     <scm>
         <connection>scm:git:https://github.com/itzg/mc-status</connection>
+        <developerConnection>scm:git:https://github.com/itzg/mc-status</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
@@ -89,6 +91,39 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <!-- skip preparation since CI build will test tagged version -->
+                    <preparationGoals/>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.3</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>itzg/mc-status</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -99,4 +134,14 @@
 			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray</id>
+            <name>bintray</name>
+            <!--suppress UnresolvedMavenProperty -->
+            <url>https://api.bintray.com/maven/${env.BINTRAY_ORG}/artifacts/${project.artifactId}/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
 </project>
