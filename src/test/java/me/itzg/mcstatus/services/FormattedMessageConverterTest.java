@@ -24,6 +24,13 @@ public class FormattedMessageConverterTest {
     }
 
     @Test
+    public void testSingleColor() {
+        final String result = converter.convertToHtml("§bMinecraft Server");
+
+        assertEquals("<span style=\"color:#55FFFF;\">Minecraft Server</span>", result);
+    }
+
+    @Test
     public void testHypixel() {
         final String result = converter.convertToHtml("               §eHypixel Network §c[1.8-1.13]\n" +
             "     §6§lBED WARS CASTLE V2 §7- §2§lMM BUG FIXES");
@@ -40,6 +47,13 @@ public class FormattedMessageConverterTest {
         final String result = converter.stripCodes("Just some text");
 
         assertEquals("Just some text", result);
+    }
+
+    @Test
+    public void testStripSingleColor() {
+        final String result = converter.stripCodes("§bMinecraft Server");
+
+        assertEquals("Minecraft Server", result);
     }
 
     @Test
