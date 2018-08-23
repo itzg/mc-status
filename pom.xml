@@ -55,7 +55,7 @@
         <dependency>
             <groupId>com.github.Steveice10</groupId>
             <artifactId>MCProtocolLib</artifactId>
-            <version>1.11.2-2</version>
+            <version>1.12.2-2</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
