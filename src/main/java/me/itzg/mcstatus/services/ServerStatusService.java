@@ -81,7 +81,7 @@ public class ServerStatusService {
                 status.setVersion(info.getVersionInfo().getVersionName());
                 status.setProtocolVersion(info.getVersionInfo().getProtocolVersion());
 
-                final String rawMotd = info.getDescription().getText();
+                final String rawMotd = info.getDescription().getFullText();
                 status.setDescription(rawMotd); // for backward compatibility
                 status.setMotd(new Motd());
                 status.getMotd().setRaw(rawMotd);
