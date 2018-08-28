@@ -81,8 +81,11 @@ public class ServerStatusService {
                 status.setVersion(info.getVersionInfo().getVersionName());
                 status.setProtocolVersion(info.getVersionInfo().getProtocolVersion());
 
-                final String rawMotd = info.getDescription().getFullText();
+                String rawMotd = info.getDescription().getText();
                 status.setDescription(rawMotd); // for backward compatibility
+                if (rawMotd.trim().isEmpty() && !info.getDescription().getExtra().isEmpty()) {
+                    rawMotd = formattedMessageConverter.convertPartsToCode(info.getDescription().getExtra());
+                }
                 status.setMotd(new Motd());
                 status.getMotd().setRaw(rawMotd);
                 status.getMotd().setHtml(formattedMessageConverter.convertToHtml(rawMotd));

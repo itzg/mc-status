@@ -1,9 +1,14 @@
 package me.itzg.mcstatus.services;
 
+import com.github.steveice10.mc.protocol.data.message.ChatColor;
+import com.github.steveice10.mc.protocol.data.message.ChatFormat;
+import com.github.steveice10.mc.protocol.data.message.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +32,9 @@ public class FormattedMessageConverter {
     }
 
     private static Map<String, Entry> codes = new HashMap<>();
+
+    public static final String RESET_CODE = "§r";
+
     static {
         codes.put("§0", new Entry(Type.COLOR, "color:#000000"));
         codes.put("§1", new Entry(Type.COLOR, "color:#0000AA"));
@@ -50,7 +58,36 @@ public class FormattedMessageConverter {
         codes.put("§n", new Entry(Type.FORMAT, "text-decoration:underline"));
         codes.put("§o", new Entry(Type.FORMAT, "font-style:italic"));
 
-        codes.put("§r", new Entry(Type.RESET, ""));
+        codes.put(RESET_CODE, new Entry(Type.RESET, ""));
+    }
+
+    private static Map<ChatColor, String> chatColorCodes = new EnumMap<>(ChatColor.class);
+    static {
+        chatColorCodes.put(ChatColor.BLACK, "§0");
+        chatColorCodes.put(ChatColor.DARK_BLUE, "§1");
+        chatColorCodes.put(ChatColor.DARK_GREEN, "§2");
+        chatColorCodes.put(ChatColor.DARK_AQUA, "§3");
+        chatColorCodes.put(ChatColor.DARK_RED, "§4");
+        chatColorCodes.put(ChatColor.DARK_PURPLE, "§5");
+        chatColorCodes.put(ChatColor.GOLD, "§6");
+        chatColorCodes.put(ChatColor.GRAY, "§7");
+        chatColorCodes.put(ChatColor.DARK_GRAY, "§8");
+        chatColorCodes.put(ChatColor.BLUE, "§9");
+        chatColorCodes.put(ChatColor.GREEN, "§a");
+        chatColorCodes.put(ChatColor.AQUA, "§b");
+        chatColorCodes.put(ChatColor.RED, "§c");
+        chatColorCodes.put(ChatColor.LIGHT_PURPLE, "§d");
+        chatColorCodes.put(ChatColor.YELLOW, "§e");
+        chatColorCodes.put(ChatColor.WHITE, "§f");
+    }
+
+    private static Map<ChatFormat, String> chatFormatCodes = new EnumMap<>(ChatFormat.class);
+    static {
+        chatFormatCodes.put(ChatFormat.OBFUSCATED, "§k");
+        chatFormatCodes.put(ChatFormat.BOLD, "§l");
+        chatFormatCodes.put(ChatFormat.STRIKETHROUGH, "§m");
+        chatFormatCodes.put(ChatFormat.UNDERLINED, "§n");
+        chatFormatCodes.put(ChatFormat.ITALIC, "§o");
     }
 
     private static final Pattern CODE_PATTERN = Pattern.compile("(§.)");
@@ -109,6 +146,20 @@ public class FormattedMessageConverter {
         }
 
         return sb.toString().replace("\n", "<br>");
+    }
+
+    public String convertPartsToCode(List<Message> parts) {
+        final StringBuilder sb = new StringBuilder();
+
+        for (Message part : parts) {
+            sb.append(chatColorCodes.get(part.getStyle().getColor()));
+            for (ChatFormat format : part.getStyle().getFormats()) {
+                sb.append(chatFormatCodes.get(format));
+            }
+            sb.append(part.getText());
+        }
+
+        return sb.toString();
     }
 
     public String stripCodes(String raw) {
