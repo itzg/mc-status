@@ -1,20 +1,18 @@
 package me.itzg.mcstatus;
 
+import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import java.util.Arrays;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author Geoff Bourne
  * @since Jun 2018
  */
 @Configuration @Slf4j
-public class WebConfigurer extends WebMvcConfigurerAdapter {
+public class WebConfigurer implements WebMvcConfigurer {
     public static final String CORS_PATH = "/**";
     private final CorsProperties corsProperties;
 

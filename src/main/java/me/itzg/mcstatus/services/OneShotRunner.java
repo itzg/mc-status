@@ -40,13 +40,18 @@ public class OneShotRunner implements ApplicationRunner {
         final List<String> args = applicationArguments.getNonOptionArgs();
 
         if (!args.isEmpty()) {
-            final Optional<String> results = applicationArguments.getOptionValues("results").stream().findFirst();
+            final List<String> results = applicationArguments.getOptionValues("results");
 
             final List<PrintStream> outputs = new ArrayList<>();
             outputs.add(System.out);
 
-            if (results.isPresent()) {
-                outputs.add(new PrintStream(new FileOutputStream(results.get())));
+            final String resultsOut;
+            if (results != null && !results.isEmpty()) {
+                resultsOut = results.get(0);
+                outputs.add(new PrintStream(new FileOutputStream(resultsOut)));
+            }
+            else {
+                resultsOut = null;
             }
 
             final Integer totalFails;
@@ -72,8 +77,8 @@ public class OneShotRunner implements ApplicationRunner {
                     }
                 }, (f1, f2) -> f1 + f2);
             } finally {
-                if (results.isPresent()) {
-                    log.info("Wrote results to {}", results.get());
+                if (resultsOut != null) {
+                    log.info("Wrote results to {}", resultsOut);
                     outputs.get(1).close();
                 }
             }
