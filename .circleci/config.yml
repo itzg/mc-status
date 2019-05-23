@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  github: h-matsuo/github-release@0.1.1
+  github: haskell-works/github-release@1.3.1
 
 jobs:
   build:
