@@ -1,17 +1,17 @@
-version: 2
+version: '2.1'
 
-default: &default
-  docker:
-  - image: circleci/openjdk:8-jdk
-
-  working_directory: ~/repo
-
-  environment:
-    MAVEN_OPTS: -Xmx1200m
+orbs:
+  github-release: h-matsuo/github-release@0.1.1
 
 jobs:
   build:
-    <<: *default
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    working_directory: ~/repo
+
+    environment:
+      MAVEN_OPTS: -Xmx1200m
 
     steps:
     - checkout
@@ -28,4 +28,31 @@ jobs:
         - ~/.m2
         key: v1-dependencies-{{ checksum "pom.xml" }}
 
-    - run: mvn test
+    - run: mvn verify
+
+    - run: |
+        mkdir /tmp/artifacts
+        cp target/*.jar /tmp/artifacts
+
+    - store_artifacts:
+        path: /tmp/artifacts
+
+    - persist_to_workspace:
+        root: /tmp/artifacts
+        paths:
+          - *
+
+workflow:
+  build_and_release:
+    jobs:
+      - build
+      - github/release:
+          tag: v$CIRCLE_BUILD_NUM
+          title: Release v$CIRCLE_BUILD_NUM
+          attach-workspace: true
+          artefacts-folder: .
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
