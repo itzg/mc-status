@@ -40,7 +40,7 @@ jobs:
     - persist_to_workspace:
         root: /tmp/artifacts
         paths:
-          - *
+          - "*"
 
 workflow:
   build_and_release:
