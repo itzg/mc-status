@@ -109,6 +109,7 @@
         <version>2.5.3</version>
         <configuration>
           <!-- skip preparation since CI build will test tagged version -->
+          <completionGoals/>
           <preparationGoals/>
           <tagNameFormat>@{project.version}</tagNameFormat>
         </configuration>
