@@ -4,10 +4,6 @@
 
 A web application that serves up a little REST API to query and convey the status of Minecraft servers using the native MC protocol
 
-[![](https://jitpack.io/v/itzg/mc-status.svg)](https://jitpack.io/#itzg/mc-status)
-
-[Download pre-built jar](https://jitpack.io/com/github/itzg/mc-status/1.2.0/mc-status-1.2.0.jar)
-
 ## Usage as a REST Server
 
 To use only the ad hoc query endpoint, `/server`, just start using:
