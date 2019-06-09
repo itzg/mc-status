@@ -3,6 +3,3 @@ logging:
     org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer: info
     org.springframework: warn
     org.apache.catalina: warn
-spring:
-  main:
-    web-environment: ${enable-web:true}

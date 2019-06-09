@@ -37,7 +37,7 @@ The following configuration parameters can be passed after the jar:
 
 You can also run mc-status in a one-shot, terse, script-friendly way by invoking it as:
 
-    java -jar mc-status --enable-web=false SERVER[:PORT] ...
+    java -jar mc-status --one-shot SERVER[:PORT] ...
 
 If any `SERVER[:PORT]` status checks times out, then the process exits with a non-zero status code.
 
