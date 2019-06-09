@@ -31,8 +31,8 @@ jobs:
         name: "Docker build"
         command: >
           mvn jib:build
-          -Djib.to.auth.username ${DOCKER_USER}
-          -Djib.to.auth.password ${DOCKER_PASSWORD}
+          -Djib.to.auth.username=${DOCKER_USER}
+          -Djib.to.auth.password=${DOCKER_PASSWORD}
 
     - run: |
         mkdir /tmp/artifacts
