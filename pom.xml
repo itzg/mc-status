@@ -4,7 +4,7 @@
 
   <groupId>me.itzg</groupId>
   <artifactId>mc-status</artifactId>
-  <version>1.4-SNAPSHOT</version>
+  <version>1.4.0</version>
   <packaging>jar</packaging>
 
   <name>mc-status</name>
@@ -26,7 +26,7 @@
   <scm>
     <connection>scm:git:https://github.com/itzg/mc-status</connection>
     <developerConnection>scm:git:https://github.com/itzg/mc-status</developerConnection>
-    <tag>HEAD</tag>
+    <tag>1.4.0</tag>
   </scm>
 
   <developers>
