@@ -56,7 +56,7 @@ jobs:
             -delete ${VERSION}
             ./artifacts/
 
-workflow:
+workflows:
   version: 2
 
   build_and_release:
