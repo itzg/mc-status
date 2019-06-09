@@ -1,4 +1,7 @@
 
+![GitHub release](https://img.shields.io/github/release/itzg/mc-status.svg)
+![Docker Pulls](https://img.shields.io/docker/pulls/itzg/mc-status.svg)
+
 A web application that serves up a little REST API to query and convey the status of Minecraft servers using the native MC protocol
 
 [![](https://jitpack.io/v/itzg/mc-status.svg)](https://jitpack.io/#itzg/mc-status)
