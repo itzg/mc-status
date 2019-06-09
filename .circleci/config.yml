@@ -41,7 +41,7 @@ jobs:
 
   publish-github-release:
     docker:
-      - image: cibuilds/github:0.10
+      - image: cibuilds/github:0.12
     steps:
       - attach_workspace:
           at: ./artifacts
@@ -53,7 +53,8 @@ jobs:
             -u ${CIRCLE_PROJECT_USERNAME}
             -r ${CIRCLE_PROJECT_REPONAME}
             -c ${CIRCLE_SHA1}
-            -delete ${VERSION}
+            -delete
+            ${CIRCLE_TAG}
             ./artifacts/
 
 workflows:
