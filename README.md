@@ -12,7 +12,7 @@ To use only the ad hoc query endpoint, `/server`, just start using:
     
 The following configuration parameters can be passed after the jar:
 
-* **--mcstatus.servers**
+* **--mcstatus.servers**=host[:port]
   
   A comma separated list of `host[:port]` to pre-configure for use with `/servers` endpoint 
 
