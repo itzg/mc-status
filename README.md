@@ -1,4 +1,9 @@
 
+# Deprecated
+
+This project is deprecated and [mc-monitor](https://github.com/itzg/mc-monitor) should be used instead.
+
+
 [![GitHub release](https://img.shields.io/github/release/itzg/mc-status.svg)](https://github.com/itzg/mc-status/releases/latest)
 [![Docker Pulls](https://img.shields.io/docker/pulls/itzg/mc-status.svg)](https://hub.docker.com/r/itzg/mc-status)
 
